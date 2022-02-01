@@ -12,7 +12,7 @@ namespace HomeWorkClassPlayerXY
         {
             Renderer renderer = new Renderer();
             int x;
-            int y; 
+            int y;
             int numberInput = 0;
             Console.WriteLine("Введите значение по X для координат $");
             ChekUserInput(ref numberInput);
@@ -21,7 +21,7 @@ namespace HomeWorkClassPlayerXY
             ChekUserInput(ref numberInput);
             y = numberInput;
             Player player = new Player(x, y);
-            renderer.DrawPlayer(player.X,player.Y);
+            renderer.DrawPlayer(player.X, player.Y);
         }
 
         static void ChekUserInput(ref int numberInput)
@@ -31,7 +31,7 @@ namespace HomeWorkClassPlayerXY
             {
                 string userInput = Console.ReadLine();
                 if (int.TryParse(userInput, out int intValue))
-                {                    
+                {
                     numberInput = intValue;
                     completed = true;
                 }
@@ -65,19 +65,18 @@ namespace HomeWorkClassPlayerXY
                     _x = xMin;
                 }
 
-                 else if (value > xMax)
+                else if (value > xMax)
                 {
                     Console.WriteLine($"Значение для Х установлено по умолчанию на максимальное {xMax}");
                     _x = xMax;
                 }
 
-                else 
+                else
                 {
                     _x = value;
                 }
             }
         }
-
 
         public int Y
         {
