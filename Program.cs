@@ -30,8 +30,7 @@ namespace HomeWorkClassPlayerXY
                 string userInput = Console.ReadLine();
                 if (int.TryParse(userInput, out  intValue))
                 {                    
-                    completed = true;
-                   
+                    completed = true;                   
                 }
                 else
                 {
@@ -81,13 +80,11 @@ namespace HomeWorkClassPlayerXY
                 Console.WriteLine($"Значение для Х установлено по умолчанию на минимальное {_numberMin}");
                 _number = _numberMin;
             }
-
             else if (value > _numberMax)
             {
                 Console.WriteLine($"Значение для Х установлено по умолчанию на максимальное {_numberMax}");
                 _number = _numberMax;
             }
-
             else
             {
                 _number = value;
