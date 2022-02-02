@@ -11,44 +11,43 @@ namespace HomeWorkClassPlayerXY
         static void Main(string[] args)
         {
             Renderer renderer = new Renderer();
-            int x;
-            int y;
-            int numberInput = 0;
-            Console.WriteLine("Введите значение по X для координат $");
-            ChekUserInput(ref numberInput);
-            x = numberInput;
+            int coordinateX;
+            int coordinateY;            
+            Console.WriteLine("Введите значение по X для координат $");            
+            coordinateX = ReadInt();
             Console.WriteLine("Введите значение по Y для координаты $");
-            ChekUserInput(ref numberInput);
-            y = numberInput;
-            Player player = new Player(x, y);
+            coordinateY = ReadInt(); 
+            Player player = new Player(coordinateX, coordinateY);
             renderer.DrawPlayer(player.X, player.Y);
         }
 
-        static void ChekUserInput(ref int numberInput)
+        static int  ReadInt()
         {
             bool completed = false;
+            int intValue = 0;
             while (completed == false)
             {
                 string userInput = Console.ReadLine();
-                if (int.TryParse(userInput, out int intValue))
-                {
-                    numberInput = intValue;
+                if (int.TryParse(userInput, out  intValue))
+                {                    
                     completed = true;
+                   
                 }
                 else
                 {
                     Console.WriteLine("Не верный ввод значения.Введите  целое число.");
                 }
             }
+            return intValue;           
         }
     }
 
     class Player
     {
-        int xMin = 5;
-        int xMax = 25;
-        int yMin = 5;
-        int yMax = 25;
+        private int _xMin = 5;
+        private int _xMax = 25;
+        private int _yMin = 5;
+        private int _yMax = 25;
         private int _x;
         private int _y;
         public int X
@@ -59,22 +58,7 @@ namespace HomeWorkClassPlayerXY
             }
             set
             {
-                if (value < xMin)
-                {
-                    Console.WriteLine($"Значение для Х установлено по умолчанию на минимальное {xMin}");
-                    _x = xMin;
-                }
-
-                else if (value > xMax)
-                {
-                    Console.WriteLine($"Значение для Х установлено по умолчанию на максимальное {xMax}");
-                    _x = xMax;
-                }
-
-                else
-                {
-                    _x = value;
-                }
+                SetValue(ref _x, value, _xMin, _xMax);                
             }
         }
 
@@ -86,21 +70,27 @@ namespace HomeWorkClassPlayerXY
             }
             set
             {
-                if (value < yMin)
-                {
-                    Console.WriteLine($"Значение для Y установлено по умолчанию на минимальное {yMin}");
-                    _y = yMin;
-                }
+                SetValue(ref _y, value, _yMin, _yMax);
+            }
+        }
 
-                else if (value > yMax)
-                {
-                    Console.WriteLine($"Значение для Y установлено по умолчанию на максимальное {yMax}");
-                    _y = yMax;
-                }
-                else
-                {
-                    _y = value;
-                }
+        static void SetValue(ref int _number, int value, int _numberMin, int _numberMax)
+        {
+            if (value < _numberMin)
+            {
+                Console.WriteLine($"Значение для Х установлено по умолчанию на минимальное {_numberMin}");
+                _number = _numberMin;
+            }
+
+            else if (value > _numberMax)
+            {
+                Console.WriteLine($"Значение для Х установлено по умолчанию на максимальное {_numberMax}");
+                _number = _numberMax;
+            }
+
+            else
+            {
+                _number = value;
             }
         }
 
