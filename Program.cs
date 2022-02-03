@@ -12,13 +12,16 @@ namespace HomeWorkClassPlayerXY
         {
             Renderer renderer = new Renderer();
             int coordinateX;
-            int coordinateY;            
-            Console.WriteLine("Введите значение по X для координат $");            
+            int coordinateY;
+            char xCoordinate = 'X';
+            char yCoordinate = 'Y';
+            char playerSign = '$';
+            OutputMessage( xCoordinate, playerSign);            
             coordinateX = ReadInt();
-            Console.WriteLine("Введите значение по Y для координаты $");
+            OutputMessage( yCoordinate, playerSign); 
             coordinateY = ReadInt(); 
             Player player = new Player(coordinateX, coordinateY);
-            renderer.DrawPlayer(player.X, player.Y);
+            renderer.DrawPlayer(player.CoordinateX, player.CoordinateY);
         }
 
         static int  ReadInt()
@@ -39,52 +42,36 @@ namespace HomeWorkClassPlayerXY
             }
             return intValue;           
         }
+
+        static void OutputMessage(char coordinate, char playerSign)
+        {
+            Console.WriteLine($"Введите значение по {coordinate} для координат {playerSign}");
+        }
     }
 
     class Player
     {
-        private readonly int _xMin = 5;
-        private readonly int _xMax = 25;
-        private readonly int _yMin = 5;
-        private readonly int _yMax = 25;
-        private int _x;
-        private int _y;
-        public int X
-        {
-            get
-            {
-                return _x;
-            }
-            private set
-            {
-                _x = AppointValue( value, _xMin, _xMax);                
-            }
-        }
-
-        public int Y
-        {
-            get
-            {
-                return _y;
-            }
-            private set
-            {
-                 _y = AppointValue(value, _yMin, _yMax);
-            }
-        }
+        private readonly int _xMinCoordinate = 5;
+        private readonly int _xMaxCoordinate = 25;
+        private readonly int _yMinCoordinate = 5;
+        private readonly int _yMaxCoordinate = 25;
+        private readonly string coordinateX = "X";
+        private readonly string coordinateY = "Y";       
+        public int CoordinateX { get; private set; }        
+        public int CoordinateY { get; private set; }       
 
         public Player(int x, int y)
         {
-            X = x;
-            Y = y;
+            CoordinateX = AppointValue(x, _xMinCoordinate, _xMaxCoordinate, coordinateX);
+            CoordinateY = AppointValue(y, _yMinCoordinate, _yMaxCoordinate, coordinateY);
         }
 
-        private int AppointValue( int value, int _numberMin, int _numberMax)
+        private int AppointValue( int value, int _numberMin, int _numberMax, string coordinate)
         {
             int _number;
             if (value < _numberMin)
             {
-                Console.WriteLine($"Значение для Х установлено по умолчанию на минимальное {_numberMin}");
+                Console.WriteLine($"Значение для {coordinate} установлено по умолчанию на минимальное {_numberMin}");
                 _number = _numberMin;
             }
             else if (value > _numberMax)
