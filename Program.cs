@@ -43,10 +43,10 @@ namespace HomeWorkClassPlayerXY
 
     class Player
     {
-        private int _xMin = 5;
-        private int _xMax = 25;
-        private int _yMin = 5;
-        private int _yMax = 25;
+        private readonly int _xMin = 5;
+        private readonly int _xMax = 25;
+        private readonly int _yMin = 5;
+        private readonly int _yMax = 25;
         private int _x;
         private int _y;
         public int X
@@ -55,9 +55,9 @@ namespace HomeWorkClassPlayerXY
             {
                 return _x;
             }
-            set
+            private set
             {
-                SetValue(ref _x, value, _xMin, _xMax);                
+                _x = AppointValue( value, _xMin, _xMax);                
             }
         }
 
@@ -67,14 +67,21 @@ namespace HomeWorkClassPlayerXY
             {
                 return _y;
             }
-            set
+            private set
             {
-                SetValue(ref _y, value, _yMin, _yMax);
+                 _y = AppointValue(value, _yMin, _yMax);
             }
         }
 
-        static void SetValue(ref int _number, int value, int _numberMin, int _numberMax)
+        public Player(int x, int y)
         {
+            X = x;
+            Y = y;
+        }
+
+        private int AppointValue( int value, int _numberMin, int _numberMax)
+        {
+            int _number;
             if (value < _numberMin)
             {
                 Console.WriteLine($"Значение для Х установлено по умолчанию на минимальное {_numberMin}");
@@ -89,13 +96,8 @@ namespace HomeWorkClassPlayerXY
             {
                 _number = value;
             }
-        }
-
-        public Player(int x, int y)
-        {
-            X = x;
-            Y = y;
-        }
+            return _number;
+        }        
     }
 
     class Renderer
