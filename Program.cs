@@ -55,35 +55,35 @@ namespace HomeWorkClassPlayerXY
         private readonly int _xMaxCoordinate = 25;
         private readonly int _yMinCoordinate = 5;
         private readonly int _yMaxCoordinate = 25;
-        private readonly string coordinateX = "X";
-        private readonly string coordinateY = "Y";       
+        private readonly string _nameCoordinateX = "X";
+        private readonly string _nameCoordinateY = "Y";       
         public int CoordinateX { get; private set; }        
         public int CoordinateY { get; private set; }       
 
         public Player(int x, int y)
         {
-            CoordinateX = AppointValue(x, _xMinCoordinate, _xMaxCoordinate, coordinateX);
-            CoordinateY = AppointValue(y, _yMinCoordinate, _yMaxCoordinate, coordinateY);
+            CoordinateX = AppointValue(x, _xMinCoordinate, _xMaxCoordinate, _nameCoordinateX);
+            CoordinateY = AppointValue(y, _yMinCoordinate, _yMaxCoordinate, _nameCoordinateY);
         }
 
-        private int AppointValue( int value, int _numberMin, int _numberMax, string coordinate)
+        private int AppointValue( int value, int numberMin, int numberMax, string coordinate)
         {
-            int _number;
-            if (value < _numberMin)
+            int number;
+            if (value < numberMin)
             {
-                Console.WriteLine($"Значение для {coordinate} установлено по умолчанию на минимальное {_numberMin}");
-                _number = _numberMin;
+                Console.WriteLine($"Значение для {coordinate} установлено по умолчанию на минимальное {numberMin}");
+                number = numberMin;
             }
-            else if (value > _numberMax)
+            else if (value > numberMax)
             {
-                Console.WriteLine($"Значение для Х установлено по умолчанию на максимальное {_numberMax}");
-                _number = _numberMax;
+                Console.WriteLine($"Значение для Х установлено по умолчанию на максимальное {numberMax}");
+                number = numberMax;
             }
             else
             {
-                _number = value;
+                number = value;
             }
-            return _number;
+            return number;
         }        
     }
 
